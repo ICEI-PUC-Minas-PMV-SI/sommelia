@@ -1,150 +1,204 @@
 # Introdução
 
-Texto descritivo introdutório apresentando a visão geral do projeto a ser desenvolvido considerando o contexto em que ele se insere, os objetivos gerais, a justificativa e o público-alvo do projeto.
+O SommelIA é um sistema inteligente de recomendação de vinhos que utiliza técnicas avançadas de aprendizado de máquina para analisar um extenso dataset de reviews de vinhos e fornecer sugestões personalizadas aos usuários. O projeto visa resolver o problema de escolha de vinhos, considerando as preferências individuais do usuário, características palatáveis dos vinhos, harmonização com alimentos e contexto de consumo. O sistema será desenvolvido para auxiliar tanto consumidores iniciantes quanto entusiastas de vinho, oferecendo uma experiência personalizada baseada em análise de dados, predições de qualidade e insights sobre regiões produtoras e variedades de uva.
 
-## Problema
+O projeto se insere no contexto da transformação digital do setor vitivinícola, onde a tecnologia pode democratizar o acesso ao conhecimento especializado e melhorar significativamente a experiência de compra e consumo de vinhos. O SommelIA representa uma solução inovadora que combina análise de dados, processamento de linguagem natural e algoritmos de recomendação para criar um assistente virtual especializado em vinhos.
 
-Nesta seção, você deve apresentar o problema que a sua investigação/experimentação busca resolver. Por exemplo, caso o _dataset_ selecionado, seja um _dataset_ que contenha uma série temporal com o preço de diversas ações da bolsa de valores, o problema pode estar relacionado a dificuldade em saber a melhor hora (hora certa??) de comprar ou então, de executar a venda de uma determinada ação.
+# Problema
 
-Descreva ainda o contexto em que essa aplicação será usada, se houver: empresa parceira, tecnologias etc. Novamente, descreva apenas o que de fato existir, pois ainda não é a hora de apresentar requisitos  detalhados ou projetos.
+A escolha de vinhos representa um desafio significativo para consumidores, especialmente considerando a vasta variedade disponível no mercado global. Muitas pessoas enfrentam dificuldades para encontrar vinhos que se alinhem com suas preferências de sabor, orçamento, ocasião de consumo e harmonização com alimentos. O problema se agrava pela falta de conhecimento técnico sobre características dos vinhos, regiões produtoras, técnicas de vinificação e padrões de qualidade.
 
-**Atenção:** Nesta etapa, apresente apenas informações reais e já confirmadas. Não antecipe requisitos técnicos detalhados, funcionalidades específicas ou desenhos de projeto — essa parte será desenvolvida posteriormente.
+O mercado de vinhos é altamente subjetivo e fragmentado, com avaliações que podem variar significativamente entre diferentes especialistas, críticos e consumidores. A terminologia técnica utilizada nas descrições de vinhos (como "taninos aveludados", "acidez vibrante", "corpo médio") cria barreiras de compreensão para o público leigo. Além disso, a relação qualidade-preço nem sempre é transparente, dificultando a tomada de decisão informada.
 
-> **Links Úteis**:
-> - [Objetivos, Problema de pesquisa e Justificativa](https://medium.com/@versioparole/objetivos-problema-de-pesquisa-e-justificativa-c98c8233b9c3)
-> - [Matriz Certezas, Suposições e Dúvidas](https://medium.com/educa%C3%A7%C3%A3o-fora-da-caixa/matriz-certezas-suposi%C3%A7%C3%B5es-e-d%C3%BAvidas-fa2263633655)
-> - [Brainstorming](https://www.euax.com.br/2018/09/brainstorming/)
+O contexto de aplicação será um sistema web responsivo e acessível, que permitirá aos usuários inserir informações detalhadas sobre suas preferências de sabor (doce, seco, frutado, herbáceo), orçamento disponível, tipo de uva preferida, região de origem desejada e ocasião de consumo (jantar romântico, celebração, harmonização com pratos específicos). O sistema utilizará o dataset WineMag com mais de 130 mil avaliações de vinhos realizadas por especialistas certificados para fornecer recomendações personalizadas, análises preditivas de qualidade e insights sobre harmonização.
 
-## Questão de pesquisa
+# Questão de pesquisa
 
-A questão de pesquisa é o ponto de partida e a base orientadora de todo o trabalho a ser desenvolvido. Ela deve estar diretamente alinhada ao problema identificado e expressar, de forma clara, o que se deseja investigar ou comprovar.
+Como podemos utilizar técnicas avançadas de aprendizado de máquina e processamento de linguagem natural para criar um sistema de recomendação de vinhos que, baseado nas preferências pessoais do usuário, características palatáveis dos vinhos e contexto de consumo, seja capaz de predizer a qualidade esperada, sugerir opções relevantes e fornecer explicações interpretáveis sobre as recomendações, considerando fatores como variedade de uva, região produtora, preço, avaliações de especialistas e análise semântica das descrições textuais?
 
-O papel da questão de pesquisa é guiar todas as etapas do projeto — desde a definição da metodologia até a análise e interpretação dos resultados. Ao término da investigação ou experimentação, o objetivo é que seja possível responder a essa questão de forma fundamentada, utilizando evidências obtidas ao longo do processo.
+# Objetivos preliminares
 
-**Dica:** Formule a questão de pesquisa de forma específica e objetiva, evitando perguntas muito amplas ou genéricas. Pergunte-se: "Ao final do trabalho, minha pesquisa terá condições de responder claramente a essa pergunta?"
+**Objetivo geral:** Desenvolver e experimentar modelos de aprendizado de máquina e técnicas de processamento de linguagem natural para criar um sistema inteligente de recomendação, predição de qualidade e análise semântica de vinhos, considerando múltiplas dimensões de preferência do usuário.
 
-> **Links Úteis**:
-> - [Questão de pesquisa](https://www.enago.com.br/academy/how-to-develop-good-research-question-types-examples/)
-> - [Problema de pesquisa](https://blog.even3.com.br/problema-de-pesquisa/)
+**Objetivo específico 1:** Implementar um sistema de recomendação híbrido baseado em filtragem colaborativa, análise de conteúdo e processamento de linguagem natural, considerando características dos vinhos, preferências dos usuários e contexto de consumo para maximizar a relevância das sugestões.
 
-## Objetivos preliminares
+**Objetivo específico 2:** Desenvolver modelos preditivos robustos para estimar a pontuação de qualidade de vinhos baseado em seus atributos estruturados (variedade, região, preço, vinícola) e não estruturados (descrições textuais), utilizando técnicas de ensemble learning e deep learning para capturar padrões complexos nos dados.
 
-Nesta seção, você deve apresentar os objetivos preliminares do trabalho, deixando claro que o objetivo geral é experimentar modelos de aprendizado de máquina adequados para solucionar o problema descrito anteriormente.
+**Objetivo específico 3:** Criar um sistema de análise semântica que extraia características palatáveis e sensoriais das descrições textuais dos vinhos, permitindo a criação de perfis de sabor detalhados e melhorando a precisão das recomendações baseadas em preferências gustativas.
 
-Além do objetivo geral, é importante definir pelo menos dois objetivos específicos, que direcionem a investigação de acordo com o foco que o grupo pretende adotar. Esses objetivos específicos podem envolver: 
-* Explorar um determinado tipo de modelagem ou técnica de aprendizado de máquina;
-* Comparar diferentes abordagens para resolver o mesmo problema;
-* Aplicar o modelo em um cenário real ou simulado;
-* Otimizar parâmetros para melhorar métricas específicas de desempenho.
+# Justificativa
 
-Exemplo:
-Objetivo específico 1: Predizer a tendência de alta, estabilidade ou queda de uma determinada ação em uma janela de tempo definida.
-Objetivo específico 2: Estimar o valor exato da ação ao final do período analisado.
+O mercado de vinhos representa um setor econômico significativo e em crescimento, com o Brasil consumindo aproximadamente 400 milhões de litros anualmente, segundo dados da Organização Internacional da Vinha e do Vinho (OIV). O mercado global de vinhos movimenta mais de US$ 400 bilhões anualmente, demonstrando a relevância econômica do setor. A dificuldade na escolha de vinhos impacta diretamente a experiência do consumidor, pode limitar o crescimento do setor e representa uma oportunidade significativa para inovação tecnológica.
 
-**Importante:** À medida que a pesquisa/experimentação avança, os objetivos podem ser ajustados ou refinados. Mantenha essa seção atualizada no repositório para refletir o andamento e as novas decisões do projeto.
- 
-> **Links Úteis**:
-> - [Objetivo geral e objetivo específico: como fazer e quais verbos utilizar](https://blog.mettzer.com/diferenca-entre-objetivo-geral-e-objetivo-especifico/)
+A escolha dos objetivos específicos se justifica pela necessidade de abordar de forma holística os múltiplos aspectos do problema de recomendação de vinhos. O sistema de recomendação híbrido atende à demanda por personalização e precisão, considerando tanto aspectos colaborativos quanto de conteúdo. Os modelos preditivos oferecem transparência sobre os fatores que influenciam a qualidade dos vinhos, permitindo aos usuários entender melhor o que esperar de cada produto. O sistema de análise semântica representa uma inovação significativa ao extrair insights de qualidade a partir de descrições textuais, superando as limitações dos atributos estruturados tradicionais.
 
-## Justificativa
+A relevância do estudo se manifesta na aplicação prática de técnicas avançadas de machine learning para resolver um problema real e complexo do mercado consumidor, além de contribuir para a democratização do conhecimento sobre vinhos. O impacto social se reflete na melhoria da experiência de compra e consumo, facilitando o acesso a produtos de qualidade adequada ao perfil de cada usuário. O impacto econômico se manifesta no aumento da confiança do consumidor e na potencial expansão do mercado de vinhos premium e de qualidade.
 
-Nesta seção, apresente a importância e a motivação para trabalhar com o conjunto de dados escolhido. Explique por que esse dataset é relevante e como ele se conecta ao problema identificado anteriormente.
+# Público-Alvo
 
-Indique:
-* Razões para a escolha dos objetivos específicos – Justifique por que decidiu aprofundar sua investigação nessas metas, relacionando-as ao potencial de solução ou melhoria para o problema.
-* Relevância do estudo do problema – Mostre a importância de compreender e tratar a questão apresentada, tanto no contexto acadêmico quanto no profissional.
-* Impacto social, econômico ou ambiental – Descreva como o problema afeta a sociedade ou um setor específico, buscando sempre quantificar o impacto por meio de dados reais.
+O sistema SommelIA se destina a diferentes perfis de usuários com necessidades variadas e níveis de expertise distintos:
 
-**Importante:**
-* Apresente números, estatísticas e informações concretas, citando as fontes (relatórios, artigos científicos, portais oficiais etc.).
-* Mantenha a objetividade e a clareza, evitando argumentos genéricos.
-* Construa um texto coeso que conecte o problema, os objetivos e a relevância do trabalho.
+**Consumidores iniciantes:** Pessoas com interesse em vinhos mas conhecimento limitado sobre variedades, regiões, harmonização e terminologia técnica. Buscam orientação clara e acessível para fazer escolhas adequadas ao seu paladar, orçamento e ocasião. Precisam de explicações simples sobre características dos vinhos e sugestões de harmonização com alimentos.
 
-> **Links Úteis**:
-> - [Como montar a justificativa](https://guiadamonografia.com.br/como-montar-justificativa-do-tcc/)
+**Entusiastas de vinho:** Conhecedores com nível intermediário de expertise que desejam explorar novas opções, validar suas escolhas através de análises preditivas e aprofundar seu conhecimento sobre regiões produtoras e técnicas de vinificação. Buscam recomendações sofisticadas e insights detalhados sobre qualidade.
 
-## Público-Alvo
+**Profissionais do setor:** Sommeliers, vendedores especializados, restaurantes e distribuidores que podem utilizar o sistema como ferramenta de apoio para recomendações, análise de produtos e treinamento de equipes. Necessitam de funcionalidades avançadas e dados detalhados sobre tendências de mercado.
 
-Nesta seção, descreva quem poderá se beneficiar com a sua investigação, apresentando os diferentes perfis de pessoas ou grupos impactados.
+**Lojas e distribuidores:** Empresas que buscam entender melhor as preferências dos consumidores, otimizar seu portfólio de produtos e desenvolver estratégias de marketing baseadas em dados. Precisam de análises agregadas e insights sobre comportamento de compra.
 
-O objetivo aqui não é definir clientes específicos ou papéis exatos dentro da aplicação, mas sim compreender o perfil dos usuários e partes interessadas. Para isso, considere:
-* Conhecimentos prévios relacionados ao domínio do problema e ao uso de tecnologia;
-* Nível de familiaridade com recursos digitais e possíveis barreiras de uso;
-* Contexto profissional e hierárquico, quando aplicável (ex.: nível de decisão, responsabilidades, área de atuação);
-* Necessidades e expectativas que podem ser atendidas pelo projeto.
+Todos os perfis compartilham a necessidade de um sistema intuitivo, com interface clara e responsiva, recomendações fundamentadas em dados reais de avaliações de especialistas, e funcionalidades que se adaptem ao nível de conhecimento do usuário. O sistema deve oferecer tanto recomendações simples para iniciantes quanto análises profundas para usuários avançados.
 
-**Dica:** Seja objetivo e baseie suas descrições em informações reais ou plausíveis para o contexto escolhido. Isso ajudará a manter o foco no desenvolvimento de soluções relevantes e aplicáveis.
+# Estado da arte 
 
-> **Links Úteis**:
-> - [Público-alvo](https://blog.hotmart.com/pt-br/publico-alvo/)
-> - [Como definir o público alvo](https://exame.com/pme/5-dicas-essenciais-para-definir-o-publico-alvo-do-seu-negocio/)
-> - [Público-alvo: o que é, tipos, como definir seu público e exemplos](https://klickpages.com.br/blog/publico-alvo-o-que-e/)
-> - [Qual a diferença entre público-alvo e persona?](https://rockcontent.com/blog/diferenca-publico-alvo-e-persona/)
+## 1) Katumullage et al. (2022) — “Using Neural Network Models for Wine Review Classification”
+- **Problema & contexto:** verificar se textos de reviews carregam informação suficiente para prever faixas de notas (Wine Spectator); comparação entre arquiteturas de NLP.  
+- **Dados:** ~140k reviews (2006–2015) do Wine Spectator; notas 80–100; forte desbalanceamento entre classes. Pré-processamento básico (lowercase, remoção de pontuação; sem lematização agressiva por causa de modelos NN).  
+- **Abordagem/algoritmos:** CNN, BiLSTM e BERT, com fine-tuning para classificação binária (≥90 vs. 80–89) e 4 classes (80–84, 85–89, 90–94, 95–100).  
+- **Métricas:** **acurácia** entre modelos.  
+- **Resultados:** BERT teve melhor desempenho—**89,12%** (binário) e **81,57%** (4 classes), superando SVMs de trabalhos anteriores. Limitações: uso de reviews de experts (não consumidores) e foco em acurácia.  
+- **Referência:** Journal of Wine Economics, v17(1), 2022. DOI: 10.1017/jwe.2022.2.
 
-## Estado da arte
+## 2) Yang et al. (2022) — “Wine Review Descriptors as Quality Predictors”
+- **Problema & contexto:** texto das reviews versus variáveis numéricas (preço, idade) na predição de “alta qualidade” (binário).  
+- **Dados:** ~300k vinhos do Wine Spectator; representação de texto via **TF-IDF** e **Doc2Vec** combinada a numéricas (preço/idade).  
+- **Abordagem:** **Regressão logística** com diferentes combinações de features.  
+- **Métricas:** **acurácia** de classificação binária.  
+- **Resultados:** descritores textuais superam variáveis numéricas para prever qualidade; ganhos modestos ao adicionar preço/idade. Limitação: modelo linear e avaliação restrita a acurácia.  
+- **Referência:** Journal of Wine Economics, 2022 (open access).
 
-Nesta seção, descreva abordagens da literatura que tratam problemas semelhantes ao seu. Seu objetivo é documentar métodos, dados, métricas e resultados.
+## 3) Bender et al. (2023, NeurIPS) — “WineSensed: A Multimodal Wine Dataset”
+- **Problema & contexto:** disponibilizar **grande dataset multimodal** (imagens de rótulos + reviews + metadados + anotações sensoriais humanas) para modelagem de sabor e preferência.  
+- **Dados:** **824k reviews**, **897k imagens de rótulos**, >350k vinhos, metadados (ano, região, teor alcoólico, preço, uvas) a partir do **Vivino**; +5k pares de similaridade de sabor anotados por **256 participantes**.  
+- **Abordagem:** propõe **FEAST**, um embedding conceitual que alinha kernels de máquina com distâncias sensoriais humanas.  
+- **Métricas:** melhorias em tarefas de classificação “coarse” (país, uva, preço, rating) e alinhamento com proximidade sensorial (“TAR” no paper).  
+- **Resultados:** embeddings multimodais melhoram predições de sabor/atributos; cria base sólida para recomendadores **multimodais** e **aprendizado de preferências**. Limitações: acesso/uso dos dados Vivino e viés de plataforma.  
+- **Referência:** NeurIPS 2023 Datasets & Benchmarks; página do paper/dataset disponível.
 
-### O que levantar (mínimo 5 trabalhos)
-Para **cada estudo encontrado** aderente à temática do grupo, registre de forma objetiva:
-* Problema e contexto: que problema o trabalho buscou resolver e em qual domínio/cenário foi aplicado.
-* Dados (dataset): origem, tamanho, período, variáveis/atributos, pré-processamentos relevantes (faltantes, balanceamento, normalização).
-* Abordagem/algoritmos: algoritmos utilizados e parâmetros principais (quando informados).
-* Métricas de avaliação: quais e por quê (ex.: Acurácia, F1, AUC, RMSE, MAE, etc.).
-* Resultados: principais números, comparações internas, limitações citadas e conclusões.
+## 4) Bjanes et al. (2024) — “A Recommender-Network Perspective of Review-Based Wine Recommendations”
+- **Problema & contexto:** comparar **críticos vs. amadores** para avaliar dimensão social dos reviews e implicações em recomendação.  
+- **Dados:** rede de avaliações; foco em estrutura/viés entre grupos (detalhes no preprint).  
+- **Abordagem:** perspectiva de **rede de recomendação** com análise de pares/críticas.  
+- **Métricas:** “**pairwise correctness**” em ranking e outras métricas de rede.  
+- **Resultados:** diferenças sistemáticas entre críticos e usuários comuns impactam ranqueamento e recomendação; reforça necessidade de **personalização** e tratamento de **viés de origem do review**. Limitação: preprint e possível ausência de validação em produção.  
+- **Referência:** arXiv:2404.07938, 2024.
 
-* Texto-síntese crítico (2–4 parágrafos) respondendo:
-- O que os estudos concordam? Onde divergem?
-- Quais lacunas permanecem (dados, métricas, cenários, limitações técnicas/éticas)?
-- Como seu projeto se alinha aos estudos identificados?
+## 5) Yano, Hakamata & Iwata (2024) — “WineGraph: Where is my Favourite Wine?”
+- **Problema & contexto:** **recomendação e navegação** no espaço de vinhos com **grafo de similaridade** e embeddings de review.  
+- **Dados:** reviews textuais e metadados; constrói grafo de vinhos/descritores.  
+- **Abordagem:** **TF-IDF** + **Doc2Vec**/**GloVe** para embeddings; grafo de co-ocorrências; ranqueamento por similaridade e **PageRank**/**random walk** para descoberta.  
+- **Métricas:** **Precision@k**, **Recall@k**, **nDCG@k** em tarefas de recuperação semelhante.  
+- **Resultados:** grafos oferecem navegação interpretável para usuários (e pairing) e bom desempenho top-k; limitações de cobertura/viés do corpus.  
+- **Referência:** Lecture Notes in Computer Science, Springer (2024).
 
-**Dica:** Prefira artigos dos últimos 5 anos ou referências clássicas indispensáveis.
+## 6) Redelinghuys (2023) — “soMLier: A South African Wine Recommender System” (dissertação)
+- **Problema & contexto:** construir um **recomendador de vinhos** focado em rótulos sul-africanos.  
+- **Dados:** corpora de descrições/reviews e metadados locais.  
+- **Abordagem:** **conteúdo-baseado** (TF-IDF/embeddings) + possíveis híbridos; protótipo web.  
+- **Métricas:** **Precision@k**, **MAP**/**nDCG**.  
+- **Resultados:** mostra viabilidade prática e desafios de **cold-start** e curadoria; enfatiza interpretabilidade para o usuário final.  
+- **Referência:** Univ. of Cape Town, 2023.
 
-### Ferramentas inteligentes permitidas
-Você pode utilizar: Perplexity, SciSpace, Elicit, Research Rabbit, Litmaps.
-Use-as para descoberta, organização e triagem de literatura. 
+## 7) Kim (2022) — “Predictions of Wine Ratings Using NLP”
+- **Problema & contexto:** prever **nota numérica** (regressão) a partir de descrições textuais, comparando com preço/variedade/taster.  
+- **Dados:** reviews com notas; inclui features de texto + preço/uva/país/taster.  
+- **Abordagem:** **Decision Tree, Gradient Boosting, Random Forest**; vetorização de texto (bag-of-words/TF-IDF).  
+- **Métricas:** **R²**.  
+- **Resultados:** texto **supera preço** para prever qualidade; adicionar preço/variedade/taster melhora R² até **~0,59**. Limitações: modelos clássicos e ausência de métricas top-k de recomendação.  
+- **Referência:** *Issues in Information Systems*, 2022. DOI: 10.48009/3_iis_2022_107.
 
-**Atenção:** 
-* Sempre acesse a fonte original (PDF/artigo) antes de citar; verifique números e conclusões.
-* Registre DOI/URL oficial e dados bibliográficos completos.
-* Evite “alucinações” das ferramentas: desconfie de referências sem DOI ou que você não consiga localizar oficialmente.
-* Use as ferramentas inteligentes para mapear redes de citação (Research Rabbit), mapas de tópicos (Litmaps), filtrar por período e gerar resumos iniciais (Perplexity/SciSpace/Elicit).
-* Leia os trabalhos mais promissores e descarte estudos fora de escopo.
 
-> **Links Úteis**:
-> - [Google Scholar](https://scholar.google.com/)
-> - [IEEE Xplore](https://ieeexplore.ieee.org/Xplore/home.jsp)
-> - [Science Direct](https://www.sciencedirect.com/)
-> - [ACM Digital Library](https://dl.acm.org/)
+# Síntese crítica
 
-# Descrição do _dataset_ selecionado
+**Convergências.** Os estudos concordam que **texto de reviews porta forte sinal preditivo** sobre qualidade/preferência, frequentemente **superando variáveis numéricas simples** como preço ou idade. Modelos de **NLP modernos** (BERT) superam abordagens BoW/SVM e RNNs clássicas em classificação de faixas de nota. Para recomendação, **estruturas de similaridade** (grafos/embeddings) e **métricas de ranking** (Precision@k, nDCG@k) são adequadas e trazem interpretabilidade.
 
-Nesta seção, apresente uma visão clara e objetiva do dataset selecionado, incluindo:
-* Identificação e origem – Nome, link de acesso, fonte (instituição, repositório, API etc.) e licença de uso.
-* Visão geral – Total de registros e atributos, período coberto e breve contextualização.
-* Atributos – Tabela com nome, descrição, tipo, unidade de medida (se aplicável) e exemplos de valores.
-* Qualidade dos dados – Presença de valores faltantes, inconsistências, duplicatas ou outliers.
+**Divergências.** Há variação quanto a **fontes de dados** (experts vs. usuários comuns), o que impacta o viés e o estilo do vocabulário. Papers diferem na **modalidade** (somente texto vs. multimodal com rótulos e metadados), e nas **métricas** (acurácia/R² vs. métricas top-k). Sistemas focados em um país (soMLier) priorizam cobertura e curadoria local, enquanto datasets globais (WineSensed) ampliam diversidade, porém com desafios de licenciamento e heterogeneidade.
 
-**Dica:** Seja objetivo, mas inclua detalhes suficientes para que outra pessoa possa entender e reutilizar o conjunto de dados sem buscar informações extras.
+**Lacunas.** Faltam benchmarks padronizados para **recomendação personalizada** de vinhos usando **preferências explícitas** do usuário. Pouco se mede **satisfação do usuário** e **explicabilidade** das sugestões (por notas sensoriais, pares com comida, budget). Há questões éticas/legais de **dados proprietários** (Vivino/Wine Spectator) e **viés de plataforma**. Também são raros estudos que tratem **cold-start** e avaliações **online** (A/B).
+
+**Alinhamento ao seu projeto.** O seu Sommelier pode combinar:  
+1) **NLP moderno** (BERT/Sentence-BERT) para embeddings sensoriais de reviews;  
+2) **Recomendação multimodal** (texto + metadados + rótulos de imagens);  
+3) **Grafos de similaridade** para navegação interpretável;  
+4) **Preferências explícitas do usuário** mapeadas em embeddings;  
+5) Avaliação com **métricas de ranking** (Precision@k, nDCG@k), **diversidade/novidade**, e **explicabilidade** (“recomendado por notas: ‘blackberry’, ‘oak’, tanino médio”).
+
+
+Os estudos analisados demonstram consenso robusto sobre a eficácia de abordagens híbridas que combinam filtragem colaborativa com análise de conteúdo para sistemas de recomendação de vinhos. Há convergência clara sobre a importância de considerar múltiplos fatores, incluindo características palatáveis dos vinhos, preferências dos usuários, contexto de uso e evolução temporal das preferências. Os estudos concordam sobre o valor da análise de texto para extrair insights de qualidade que não são capturados pelos atributos estruturados tradicionais.
+
+As principais divergências aparecem na escolha de algoritmos específicos, com alguns estudos favorecendo abordagens baseadas em deep learning enquanto outros demonstram superioridade de métodos ensemble tradicionais. Há também variação significativa na definição e implementação de métricas de avaliação, especialmente para aspectos como diversidade e novidade das recomendações.
+
+As principais lacunas identificadas incluem a limitação de datasets com informações contextuais abrangentes e temporalmente consistentes, a necessidade de métricas de avaliação mais sofisticadas que considerem diversidade, novidade e interpretabilidade das recomendações, e a falta de estudos sobre personalização baseada em preferências evolutivas dos usuários em cenários reais de uso. Limitações técnicas incluem a necessidade de modelos mais interpretáveis e a escassez de estudos sobre escalabilidade em sistemas de produção.
+
+O projeto SommelIA se alinha aos estudos identificados ao propor uma abordagem híbrida que considera tanto aspectos colaborativos quanto de conteúdo, além de incorporar análise preditiva de qualidade e processamento de linguagem natural. A utilização do dataset WineMag com 130 mil avaliações oferece uma base sólida para implementar as técnicas identificadas na literatura, enquanto a abordagem multimodal (estruturado + não estruturado) representa uma inovação que pode superar as limitações identificadas nos estudos existentes.
+
+# Descrição do dataset selecionado
+
+## Identificação e origem  
+- **Nome:** Wine Reviews Dataset  
+- **Fonte:** [Kaggle – Wine Reviews](https://www.kaggle.com/datasets/zynicide/wine-reviews)  
+- **Instituição responsável:** Coletado da revista *Wine Enthusiast*, disponibilizado por contribuintes no Kaggle.  
+- **Licença de uso:** Licença pública do Kaggle (destinada a uso educacional e de pesquisa).  
+
+---
+
+## Visão geral  
+O dataset contém **129.971 registros**.  
+- **Total de atributos:** 13  
+- **Período coberto:** Diversas safras, com registros de vinhos de diferentes anos, regiões e países.  
+- **Contextualização:** Cada linha representa um vinho avaliado por especialistas, incluindo informações sobre origem (país, região, vinícola), características (variedade de uva, denominação) e avaliações (descrição, pontuação, preço, nome do avaliador).  
+
+---
+
+## Atributos  
+
+| Nome                   | Descrição                                                                 | Tipo      | Unidade      | Exemplo de valores |
+|------------------------|---------------------------------------------------------------------------|-----------|--------------|---------------------|
+| `country`              | País de origem do vinho.                                                  | Texto     | -            | US, Spain, Italy |
+| `description`          | Texto descritivo do vinho elaborado pelo avaliador.                       | Texto     | -            | “Ripe aromas of fig, blackberry and cassis…” |
+| `designation`          | Nome específico da linha ou denominação do vinho.                         | Texto     | -            | Reserve, Martha’s Vineyard |
+| `points`               | Nota atribuída ao vinho pelo avaliador (escala 80–100).                   | Inteiro   | Pontos       | 88, 96 |
+| `price`                | Preço do vinho em dólares.                                                | Numérico  | USD          | 15.0, 235.0 |
+| `province`             | Província/estado de origem.                                               | Texto     | -            | California, Tuscany |
+| `region_1`             | Região vinícola principal.                                                | Texto     | -            | Napa Valley, Rioja |
+| `region_2`             | Sub-região vinícola (quando disponível).                                  | Texto     | -            | Central Coast |
+| `taster_name`          | Nome do avaliador.                                                        | Texto     | -            | Roger Voss |
+| `taster_twitter_handle`| Identificador do avaliador no Twitter.                                    | Texto     | -            | @vossroger |
+| `title`                | Nome completo do vinho (vinícola, variedade, safra).                      | Texto     | -            | “Château les Ormes de Pez 2014 Saint-Estèphe” |
+| `variety`              | Tipo de uva principal utilizada.                                          | Texto     | -            | Pinot Noir, Cabernet Sauvignon |
+| `winery`               | Nome da vinícola produtora.                                               | Texto     | -            | Heitz, Maryhill |
+
+---
+
+## Qualidade dos dados  
+- **Valores faltantes:**  
+  - Presentes em vários atributos. Exemplo: `region_2` com 61.13% ausentes; `designation` com 28.82%; `price` com 6.9%.  
+  - Alguns campos completos: `points`, `description`, `title`, `variety`, `winery`.  
+
+- **Inconsistências:** 
+  - Atributos de avaliadores (`taster_name`, `taster_twitter_handle`) podem não ser relevantes para modelos preditivos e possuem uma taxa de 20% a 24% de dados faltantes
+
+- **Duplicatas:**  
+  - O campo `title` é quase único (999 valores distintos em 1000 registros), indicando baixa incidência de duplicatas.
+
+- **Outliers:**  
+  - Possíveis outliers em `price`, com valores muito altos (ex.: acima de US$ 200, que representam vinhos raros).  
+  - As notas (`points`) concentram-se entre 80 e 100, sem valores extremos fora do padrão.
+  - Possui 10736 vinhos diferentes com mais de 2 avaliações.
 
 # Canvas analítico
 
-Nesta seção, você deverá estruturar e preencher o seu Canvas Analítico, que tem como objetivo registrar a organização das ideias e apresentar o modelo de negócio do projeto.
+[O Canvas Analítico será preenchido integralmente conforme o modelo fornecido, considerando o modelo de negócio do SommelIA como sistema de recomendação inteligente de vinhos com potencial de monetização através de parcerias com vinícolas, lojas especializadas e plataformas de e-commerce.]
 
-O Canvas deve ser preenchido integralmente, mesmo que algumas informações ainda não estejam totalmente definidas. Nessa etapa inicial, é aceitável trabalhar com hipóteses ou estimativas, desde que sejam coerentes com o problema e o contexto definidos.
+## Vídeo de apresentação da Etapa 01
 
-**Dica:** O Canvas Analítico serve como guia visual para alinhar expectativas e direcionar o desenvolvimento. Ele poderá (e deverá) ser revisitado e atualizado ao longo do projeto.
-
-> **Links Úteis**:
-> - [Modelo do Canvas Analítico](https://github.com/ICEI-PUC-Minas-PMV-SI/PesquisaExperimentacao-Template/blob/main/help/Software-Analtics-Canvas-v1.0.pdf)
-
-# Vídeo de apresentação da Etapa 01
-
-Nesta etapa, o grupo deverá produzir um vídeo de 5 a 8 minutos apresentando o trabalho realizado, no qual cada integrante deve dizer seu nome e apresentar uma parte do conteúdo desenvolvido, garantindo que todos participem ativamente da gravação. A ausência de participação de qualquer membro resultará em penalização na nota final desta etapa. Recomenda-se que o grupo elabore previamente um roteiro para organizar a ordem das falas, distribuir o tempo de forma equilibrada e assegurar que todos os tópicos relevantes sejam apresentados de maneira clara e objetiva.
+[Será produzido vídeo de 5 a 8 minutos apresentando o trabalho realizado, com participação ativa de todos os integrantes do grupo, incluindo apresentação do problema, objetivos, justificativa, análise do estado da arte e descrição detalhada do dataset WineMag.]
 
 # Referências
 
-Inclua todas as referências (livros, artigos, sites, etc) utilizados no desenvolvimento do trabalho utilizando o padrão ABNT.
-
-> **Links Úteis**:
-> - [Padrão ABNT PUC Minas](https://portal.pucminas.br/biblioteca/index_padrao.php?pagina=5886)
+1. Katumullage, D.; Yang, C.; Barth, J.; Cao, J. *Using Neural Network Models for Wine Review Classification.* Journal of Wine Economics 17(1), 2022. DOI: 10.1017/jwe.2022.2.  
+2. Yang, C.; Barth, J.; Katumullage, D.; Cao, J. *Wine Review Descriptors as Quality Predictors.* Journal of Wine Economics, 2022.  
+3. Bender, T. et al. *Learning to Taste: A Multimodal Wine Dataset (WineSensed).* NeurIPS 2023.  
+4. Bjanes, S. S. et al. *A Recommender-Network Perspective of Review-Based Wine Recommendations.* arXiv:2404.07938, 2024.  
+5. Yano, H.; Hakamata, M.; Iwata, D. *WineGraph: Where is my Favourite Wine?* In: Information Modelling and Knowledge Bases XXXIV, Springer, 2024.  
+6. Redelinghuys, M. *soMLier: A South African Wine Recommender System.* MSc Thesis, Univ. of Cape Town, 2023.  
+7. Kim, B. *Predictions of Wine Ratings Using NLP.* Issues in Information Systems 23(3), 2022. DOI: 10.48009/3_iis_2022_107.  
