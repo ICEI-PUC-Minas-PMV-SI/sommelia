@@ -1,51 +1,110 @@
-# Preparação dos dados
+# Etapa 3 — Modelagem, Avaliação e Pipeline
 
-Nesta etapa, deverão ser descritas todas as técnicas utilizadas para pré-processamento/tratamento dos dados.
+## Preparação dos dados
 
-Algumas das etapas podem estar relacionadas à:
+Nesta etapa, foram aplicadas diversas técnicas de **pré-processamento e tratamento dos dados textuais** com o objetivo de preparar as descrições dos vinhos para a aplicação de modelos de aprendizado de máquina voltados à análise semântica.
 
-* Limpeza de Dados: trate valores ausentes: decida como lidar com dados faltantes, seja removendo linhas, preenchendo com médias, medianas ou usando métodos mais avançados; remova _outliers_: identifique e trate valores que se desviam significativamente da maioria dos dados.
+### 1. Limpeza de dados
+- **Remoção de valores ausentes:** as descrições (`description`) nulas foram eliminadas, uma vez que o modelo semântico depende diretamente do texto para gerar embeddings.  
+- **Remoção de duplicatas:** registros com textos idênticos foram removidos para evitar distorções nas análises.  
+- **Normalização textual:** todas as descrições foram convertidas para letras minúsculas e tiveram pontuações, caracteres especiais e espaços duplicados removidos.  
+- **Tratamento de outliers:** não foi necessária a remoção de outliers numéricos, pois o foco da análise é textual e não quantitativo.
 
-* Transformação de Dados: normalize/padronize: torne os dados comparáveis, normalizando ou padronizando os valores para uma escala específica; codifique variáveis categóricas: converta variáveis categóricas em uma forma numérica, usando técnicas como _one-hot encoding_.
+### 2. Transformação dos dados
+- **Tokenização e limpeza linguística:** foram removidas *stopwords* (palavras de pouco significado semântico, como “de”, “em”, “com”) e termos genéricos relacionados a vinho (“wine”, “grape”, “flavor”, etc.), visando realçar os elementos descritivos mais relevantes.  
+- **Codificação textual:** os textos foram preparados para serem transformados em vetores numéricos densos por meio de embeddings semânticos.  
+- **Padronização dos dados:** os textos foram processados de forma homogênea para que o modelo tratasse todas as entradas dentro da mesma estrutura linguística.
 
-* _Feature Engineering_: crie novos atributos que possam ser mais informativos para o modelo; selecione características relevantes e descarte as menos importantes.
+### 3. Feature Engineering
+- Criação de uma nova variável baseada no **vetor semântico** de cada descrição, gerado por meio do modelo `SentenceTransformer('all-MiniLM-L6-v2')`.  
+- Esses vetores, com 384 dimensões, representam as relações de significado entre as sentenças e formam a base para a análise de similaridade e agrupamento textual.
 
-* Tratamento de dados desbalanceados: se as classes de interesse forem desbalanceadas, considere técnicas como _oversampling_, _undersampling_ ou o uso de algoritmos que lidam naturalmente com desbalanceamento.
+### 4. Separação dos dados
+Como a análise teve natureza **não supervisionada**, não houve divisão tradicional em conjuntos de treinamento e teste.  
+Os embeddings foram gerados para todo o corpus, e a avaliação foi feita de forma interpretativa, observando os agrupamentos e as distâncias semânticas entre os textos.
 
-* Separação de dados: divida os dados em conjuntos de treinamento, validação e teste para avaliar o desempenho do modelo de maneira adequada.
-  
-* Manuseio de Dados Temporais: se lidar com dados temporais, considere a ordenação adequada e técnicas específicas para esse tipo de dado.
-  
-* Redução de Dimensionalidade: aplique técnicas como PCA (Análise de Componentes Principais) se a dimensionalidade dos dados for muito alta.
+### 5. Redução de dimensionalidade (opcional)
+Para facilitar a visualização, técnicas como **PCA** ou **UMAP** podem ser aplicadas para reduzir as 384 dimensões dos embeddings a 2 ou 3, permitindo observar graficamente as relações semânticas entre as descrições.
 
-* Validação Cruzada: utilize validação cruzada para avaliar o desempenho do modelo de forma mais robusta.
+---
 
-* Monitoramento Contínuo: atualize e adapte o pré-processamento conforme necessário ao longo do tempo, especialmente se os dados ou as condições do problema mudarem.
+## Descrição do modelo
 
-* Entre outras....
+O modelo selecionado para esta etapa foi o **`all-MiniLM-L6-v2`**, parte da família **Sentence-BERT (SBERT)**, disponibilizado pela biblioteca **SentenceTransformer**.  
 
-Avalie quais etapas são importantes para o contexto dos dados que você está trabalhando, pois a qualidade dos dados e a eficácia do pré-processamento desempenham um papel fundamental no sucesso de modelo(s) de aprendizado de máquina. É importante entender o contexto do problema e ajustar as etapas de preparação de dados de acordo com as necessidades específicas de cada projeto.
+### Conceitos e princípios de funcionamento
+O modelo `all-MiniLM-L6-v2` é uma versão leve e eficiente do SBERT, que transforma sentenças em **vetores de embeddings semânticos**.  
+Esses vetores permitem calcular **similaridades entre textos** baseadas em significado, e não apenas em palavras exatas.  
 
-# Descrição do modelo
+Enquanto modelos tradicionais de *bag-of-words* consideram apenas a frequência de palavras, o SBERT utiliza redes neurais transformadoras (*Transformers*) para capturar o **contexto e o sentido** das frases, gerando representações numéricas ricas e interpretáveis.
 
-Nesta seção, conhecendo os dados e de posse dos dados preparados, é hora de descrever o algoritmo de aprendizado de máquina selecionado para a construção do primeiro modelo proposto. Inclua informações abrangentes sobre o algoritmo implementado, aborde conceitos fundamentais, princípios de funcionamento, vantagens/limitações e justifique a escolha do algoritmo.
+### Vantagens
+- Elevada **eficiência computacional**, mesmo em grandes volumes de dados.  
+- Capacidade de **entender contexto e sinonímias**, superando abordagens baseadas apenas em contagem de palavras.  
+- Geração de embeddings reutilizáveis para diferentes tarefas (busca, clustering, classificação).
 
-Explore aspectos específicos, como o ajuste dos parâmetros livres. Lembre-se de experimentar parâmetros diferentes e principalmente, de justificar as escolhas realizadas e registrar todos os experimentos realizados.
+### Limitações
+- Pode apresentar **perda de nuances culturais ou linguísticas** em textos regionais.  
+- Embora multilíngue, o modelo é otimizado principalmente para o inglês, o que pode reduzir levemente a precisão em textos totalmente em português.  
 
-# Avaliação do modelo criado
+### Justificativa da escolha
+A escolha do modelo `all-MiniLM-L6-v2` se deu por seu equilíbrio entre **velocidade, desempenho semântico e leveza**, sendo ideal para aplicações exploratórias e prototipagem.  
+Outros modelos maiores, como `paraphrase-multilingual-MiniLM-L12-v2`, podem ser considerados em etapas futuras para refinar a análise em contextos multilíngues.
 
-## Métricas utilizadas
+---
 
-Nesta seção, as métricas utilizadas para avaliar o modelo desenvolvido deverão ser apresentadas (p. ex.: acurácia, precisão, recall, F1-Score, MSE etc.). A escolha de cada métrica deverá ser justificada, pois esta escolha é essencial para avaliar de forma mais assertiva a qualidade do modelo construído. 
+## Avaliação do modelo criado
 
-## Discussão dos resultados obtidos
+### Métricas utilizadas
 
-Nesta seção, discuta os resultados obtidos pelo modelo construído, no contexto prático em que os dados se inserem, promovendo uma compreensão abrangente e aprofundada da qualidade dele. Lembre-se de relacionar os resultados obtidos ao problema identificado, a questão de pesquisa levantada e estabelecer relação com os objetivos previamente propostos. 
+Por se tratar de uma análise **não supervisionada**, não foram utilizadas métricas tradicionais como acurácia, precisão ou F1-Score.  
+Em vez disso, a avaliação baseou-se em **métricas qualitativas**, observando:
 
-# Pipeline de pesquisa e análise de dados
+- **Coerência dos agrupamentos:** verificação se descrições semanticamente semelhantes (ex: “aroma frutado e fresco”) se aproximavam no espaço vetorial.  
+- **Separação temática:** análise da distância entre grupos de descrições distintas (ex: vinhos doces vs. vinhos encorpados).  
+- **Eficiência computacional:** tempo de processamento e  consumo de memória durante a geração dos embeddings.
 
-Em pesquisa e experimentação em sistemas de informação, um pipeline de pesquisa e análise de dados refere-se a um conjunto organizado de processos e etapas que um profissional segue para realizar a coleta, preparação, análise e interpretação de dados durante a fase de pesquisa e desenvolvimento de modelos. Esse pipeline é essencial para extrair _insights_ significativos, entender a natureza dos dados e, construir modelos de aprendizado de máquina eficazes. 
+### Discussão dos resultados obtidos
+
+O modelo demonstrou bom desempenho na **organização semântica** das descrições.  
+As observações mostraram que textos com padrões semelhantes foram agrupados de maneira coerente, validando a capacidade do modelo em identificar significados próximos mesmo em diferentes estruturas gramaticais.  
+
+Além disso, a visualização dos embeddings reduziu a complexidade dos dados e revelou **tendências e relações linguísticas** interessantes, como a correlação entre termos positivos e notas mais altas de vinho.  
+
+Os resultados reforçam que o uso de embeddings semânticos é uma ferramenta poderosa para a compreensão de textos descritivos e pode ser expandida para tarefas como **classificação de sentimento**, **recomendação** e **análise de tópicos**.
+
+---
+
+## Pipeline de pesquisa e análise de dados
+
+O pipeline desenvolvido para esta pesquisa foi estruturado em etapas sequenciais e replicáveis, garantindo clareza e reprodutibilidade dos resultados.  
+
+**Etapas do pipeline:**
+
+1. **Coleta dos dados**  
+   - Base textual contendo descrições de vinhos e seus metadados (nota, preço, país, tipo de uva etc.).  
+
+2. **Limpeza e pré-processamento**  
+   - Remoção de valores nulos, duplicatas e ruídos textuais.  
+   - Padronização e normalização dos textos.
+
+3. **Geração dos embeddings**  
+   - Aplicação do modelo `all-MiniLM-L6-v2` para converter cada descrição em um vetor de 384 dimensões.
+
+4. **Análise exploratória e semântica**  
+   - Cálculo de similaridades entre textos.  
+   - Identificação de agrupamentos e padrões de linguagem.  
+   - Visualização da distribuição dos embeddings em 2D.
+
+5. **Interpretação e conclusões**  
+   - Avaliação qualitativa dos agrupamentos e padrões encontrados.  
+   - Registro dos resultados e insights extraídos do modelo.
+
+Esse pipeline permite **reutilização e adaptação** para outros conjuntos de dados textuais, bastando substituir o corpus e manter o mesmo fluxo de pré-processamento e análise.
+
+---
 
 ## Observações importantes
 
-Todas as tarefas realizadas nesta etapa deverão ser registradas em formato de texto junto com suas explicações de forma a apresentar os códigos desenvolvidos e também, o código deverá ser incluído, na íntegra, na pasta "src".
+Todas as tarefas realizadas nesta etapa foram registradas em formato de texto, acompanhadas das explicações e resultados interpretativos.  
+Os códigos utilizados encontram-se na pasta **`src`** deste projeto, seguindo a estrutura definida para esta etapa da pesquisa.
