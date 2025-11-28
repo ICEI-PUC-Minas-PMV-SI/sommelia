@@ -3,7 +3,7 @@ src/api/.vscode
 
 *__pycache__/
 
-
+*.parquet
 *.suo
 *.user
 *.sln.docstates
