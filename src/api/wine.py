@@ -2,12 +2,13 @@ from sklearn.metrics.pairwise import cosine_similarity
 from sentence_transformers import SentenceTransformer
 import pandas as pd
 import numpy as np
+import os
 
 class Wine:
 
     def __init__(self, df_name):
-        self.df = pd.read_parquet(f"model/{df_name}")
-        
+        self.df = pd.read_parquet(os.path.join(os.path.dirname(os.path.abspath(__file__)), df_name))
+                
         self.sentence_model_mpnet = SentenceTransformer('all-mpnet-base-v2')
         self.sentence_model_distil = SentenceTransformer('all-distilroberta-v1')
         self.sentence_model_mini = SentenceTransformer('all-MiniLM-L6-v2')

@@ -21,6 +21,9 @@ def _normalize_record_types(record):
             record[k] = v.tolist()
     return record
 
+@app.route("/")
+def index():
+    return "API de Recomendação de Vinhos está ativa."
 
 @app.route("/recomendar", methods=["POST"])
 def recomendar():
